@@ -40,6 +40,7 @@ public class NotificationFragment extends Fragment {
     private void Action(){
         bt.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
+                System.out.println("Clicked");
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.fragment_container,new HomeFragment());
                 fragmentTransaction.addToBackStack(null);

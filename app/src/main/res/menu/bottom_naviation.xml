@@ -15,8 +15,8 @@
         android:title="Notification" />
 
     <item
-        android:id="@+id/nav_search"
+        android:id="@+id/nav_new"
         android:icon="@drawable/ic_search_black_24dp"
-        android:title="Search" />
+        android:title="New" />
 
 </menu>
