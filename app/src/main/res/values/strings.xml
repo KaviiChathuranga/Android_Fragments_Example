@@ -3,4 +3,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <string name="facebook_app_id">436560793566399</string>
+    <string name="fb_login_protocol_scheme">fb436560793566399</string>
+
 </resources>
