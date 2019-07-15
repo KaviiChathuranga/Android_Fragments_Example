@@ -41,7 +41,7 @@ import java.util.Arrays;
 
 import static com.facebook.AccessTokenManager.TAG;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggle;
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         toggle.syncState();
 
         BottomNavigationView navigationView = findViewById(R.id.bottom_navigation);
-        NavigationView drawerView = findViewById(R.id.drawer_navigation);
+        setNavigationViewListner();
 
         navigationView.setOnNavigationItemSelectedListener(listener);
 
@@ -75,6 +75,11 @@ public class MainActivity extends AppCompatActivity {
         Initializations();
 
     }
+    private void setNavigationViewListner() {
+        NavigationView navigationView = (NavigationView) findViewById(R.id.drawer_navigation);
+        navigationView.setNavigationItemSelectedListener(this);
+    }
+
     private void Initializations() {
         mCallbackManager = CallbackManager.Factory.create();
         LoginButton loginButton = context.findViewById(R.id.login_button);
@@ -185,6 +190,8 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+
+
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         System.out.println("onWindowFocusChanged");
@@ -207,5 +214,24 @@ public class MainActivity extends AppCompatActivity {
     };
 
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        Fragment fragment = null;
+        System.out.println("OnNavigationItemSelectedListener");
+        switch (menuItem.getItemId()){
+            case R.id.drawer_home:
+                fragment = new HomeFragment();
+                break;
+            case R.id.drawer_notification:
+                fragment = new NotificationFragment();
+                break;
 
+            case R.id.drawer_new:
+                fragment = new NewFragment();
+                break;
+        }
+        drawerLayout.closeDrawer(GravityCompat.START);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,fragment).commit();
+        return true;
+    }
 }
